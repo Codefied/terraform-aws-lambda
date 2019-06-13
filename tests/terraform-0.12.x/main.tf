@@ -10,7 +10,7 @@ provider "aws" {
 
 resource "random_id" "name" {
   byte_length = 6
-  prefix      = "terraform-aws-lambda-test-0.12.x"
+  prefix      = "terraform-aws-lambda-test-0_12_X"
 }
 
 module "lambda" {
