@@ -26,10 +26,9 @@ resource "aws_lambda_function" "lambda" {
   # The aws_lambda_function resource has a schema for the environment
   # variable, where the only acceptable values are:
   #   a. Undefined
-  #   b. An empty list
-  #   c. A list containing 1 element: a map with a specific schema
-  # Use slice to get option "b" or "c" depending on whether a non-empty
-  # value was passed into this module.
+  #   b. An empty map
+  #   c. A map containing 1 element: a key "variables" and a value of
+  # a map of environment varable names and values.
 
   dynamic "environment" {
     for_each = var.environment
