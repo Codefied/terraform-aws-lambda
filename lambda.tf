@@ -104,7 +104,7 @@ resource "aws_lambda_function" "lambda_with_vpc" {
   publish                        = local.publish
   tags                           = var.tags
   filename                       = lookup(data.external.built.result, "filename")
-  depends_on                     = ull_resource.archive
+  depends_on                     = null_resource.archive
 
   dynamic "environment" {
     for_each = var.environment
