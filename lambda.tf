@@ -80,7 +80,7 @@ resource "aws_lambda_function" "lambda_with_dl" {
 }
 
 resource "aws_lambda_function" "lambda_with_vpc" {
-  count = "${var.attach_vpc_config && ! var.attach_dead_letter_config ? 1 : 0}"
+  count = var.attach_vpc_config && ! var.attach_dead_letter_config ? 1 : 0
 
   vpc_config {
     security_group_ids = [var.vpc_config["security_group_ids"]]
