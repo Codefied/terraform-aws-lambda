@@ -27,7 +27,7 @@ variable "runtime" {
 
 variable "layers" {
   description = "List of Lambda Layer Version ARNs to attach to your Lambda Function."
-  type        = "list"
+  type        = list
   default     = []
 }
 
@@ -50,7 +50,7 @@ variable "build_command" {
 
 variable "build_paths" {
   description = "The files or directories used by the build command, to trigger new Lambda package builds whenever build scripts change"
-  type        = "list"
+  type        = list
   default     = ["build.py"]
 }
 
