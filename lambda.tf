@@ -31,7 +31,7 @@ resource "aws_lambda_function" "lambda" {
   # Use slice to get option "b" or "c" depending on whether a non-empty
   # value was passed into this module.
 
-  environment = ["${slice( list(var.environment), 0, length(var.environment) == 0 ? 0 : 1 )}"]
+  environment = ["${slice( tolist([var.environment]), 0, length(var.environment) == 0 ? 0 : 1 )}"]
 }
 
 # The vpc_config and dead_letter_config variables are lists of maps which,
@@ -64,7 +64,7 @@ resource "aws_lambda_function" "lambda_with_dl" {
   tags                           = "${var.tags}"
   filename                       = "${lookup(data.external.built.result, "filename")}"
   depends_on                     = ["null_resource.archive"]
-  environment                    = ["${slice( list(var.environment), 0, length(var.environment) == 0 ? 0 : 1 )}"]
+  environment                    = ["${slice( tolist([var.environment]), 0, length(var.environment) == 0 ? 0 : 1 )}"]
 }
 
 resource "aws_lambda_function" "lambda_with_vpc" {
@@ -93,7 +93,7 @@ resource "aws_lambda_function" "lambda_with_vpc" {
   tags                           = "${var.tags}"
   filename                       = "${lookup(data.external.built.result, "filename")}"
   depends_on                     = ["null_resource.archive"]
-  environment                    = ["${slice( list(var.environment), 0, length(var.environment) == 0 ? 0 : 1 )}"]
+  environment                    = ["${slice( tolist([var.environment]), 0, length(var.environment) == 0 ? 0 : 1 )}"]
 }
 
 resource "aws_lambda_function" "lambda_with_dl_and_vpc" {
@@ -126,5 +126,5 @@ resource "aws_lambda_function" "lambda_with_dl_and_vpc" {
   tags                           = "${var.tags}"
   filename                       = "${lookup(data.external.built.result, "filename")}"
   depends_on                     = ["null_resource.archive"]
-  environment                    = ["${slice( list(var.environment), 0, length(var.environment) == 0 ? 0 : 1 )}"]
+  environment                    = ["${slice( tolist([var.environment]), 0, length(var.environment) == 0 ? 0 : 1 )}"]
 }
